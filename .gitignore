@@ -1,0 +1,4 @@
+generated/
+apps/*/
+!apps/.gitkeep
+.commandcode/

@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: ${BUILD_CONTEXT}
+      dockerfile: ${DOCKERFILE_PATH}
+    image: ${IMAGE_NAME}
+    container_name: ${CONTAINER_NAME}
+    ports:
+      - "${APP_PORT}:${INTERNAL_PORT}"
+    env_file:
+      - ./app.env
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${INTERNAL_PORT}
+    restart: unless-stopped

@@ -189,5 +189,10 @@ artifact_validate() {
     log_error "App '$app_id': artifact invalid, package.json not found in apps/$app_id/."
     return 1
   fi
+  config_load "$app_id" >/dev/null 2>&1 || return 1
+  if [ "${APP_TYPE:-}" = "nextjs" ] && [ ! -d "$dir/.next" ]; then
+    log_error "App '$app_id': artifact invalid, .next/ not found in apps/$app_id/ (build Next.js first: npm run build)."
+    return 1
+  fi
   return 0
 }
